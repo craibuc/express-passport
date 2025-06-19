@@ -1,0 +1,17 @@
+extends layout
+block content
+
+  h1 Profile
+
+  table
+    tbody
+      tr
+        td Email:
+        td #{currentUser.email}
+      tr
+        td Roles:
+        td #{currentUser.roles}
+      tr
+        td Inactive:
+        td #{currentUser.inactive}
+        

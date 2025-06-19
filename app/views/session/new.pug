@@ -1,0 +1,46 @@
+extends ../layout
+block content
+
+  if errors && errors.length
+    .ui.negative.message
+      i.close.icon
+      .header Errors
+      p= errors[0]
+
+  .ui.center.aligned.container(style="margin-top: 4em; max-width: 400px;")
+
+    .ui.segment
+
+      h2 Authenticate
+      
+      form.ui.form(method="POST" action="/session/new")
+        .field
+          label(for="email" style="text-align: left; display: block;") Email
+          input(type="email" id="email" name="username" placeholder="first.last@domain.tld" value=username required)
+        .field
+          label(for="passowrd" style="text-align: left; display: block;") Password
+          input(type="password" id="password" name="password" placeholder="secret" required)
+        button.ui.primary.button(type="submit") Go
+
+      .ui.horizontal.divider OR
+
+      a.ui.blue.button(style="margin-right: 0.5em;" href="/auth/office365")
+        i.microsoft.icon
+        | Use Office 365
+
+      a.ui.blue.button(style="margin-right: 0.5em;" href="/auth/github")
+        i.github.icon
+        | Use Github
+
+  script.
+    $(document).ready(function() {
+
+      $('.message .close')
+        .on('click', function() {
+          $(this)
+            .closest('.message')
+            .transition('fade')
+          ;
+        });
+
+    });  

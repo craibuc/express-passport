@@ -1,0 +1,26 @@
+extends ../layout
+block content
+
+  h1
+    i(class="users icon")
+    | Users
+
+  table(class="ui collapsing celled table")
+    thead
+      tr
+        th
+        th Email
+        th Roles
+        th Inactive
+    tbody
+      if users
+        each user in users
+          tr
+            td
+              a(href=`/users/${ user.id }/edit`)
+                i(class="edit icon")
+            td= user.email
+            td= user.roles
+            td
+              if user.inactive
+                i(class="check square outline icon")

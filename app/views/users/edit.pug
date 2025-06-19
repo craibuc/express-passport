@@ -1,0 +1,45 @@
+extends ../layout
+block content
+
+  h1 Edit
+
+  if errors && errors.length
+    .ui.negative.message
+      i.close.icon
+      .header Errors
+      p= errors[0]
+
+  form.ui.form(method="POST" action=`/users/${user.id}/edit`)
+    .three.wide.field
+      label(for="email" style="text-align: left; display: block;") Email
+      input(type="email" id="email" name="user[email]" placeholder="first.last@domain.tld" value=user.email required)
+
+    div(class="one field")
+      label Roles
+      div(class="inline fields")
+        each role in ['viewer','administrator']
+          div(class="ui checkbox")
+            input(type="checkbox" name="user[roles]" value=role checked=(user.roles && user.roles.includes(role)) tabindex="0" class="hidden")
+            label= role
+
+    div(class="one field")
+      div(class="inline field")
+        div(class="ui checkbox")
+          input(type="checkbox" name="user[inactive]" value="1" checked=user.inactive tabindex="0" class="hidden")
+          label Inactive
+
+    button.ui.primary.button(type="submit") Submit
+    
+  script.
+    $(document).ready(function() {
+
+      $('.ui.checkbox').checkbox();
+      $('.message .close')
+        .on('click', function() {
+          $(this)
+            .closest('.message')
+            .transition('fade')
+          ;
+        });
+
+    });  

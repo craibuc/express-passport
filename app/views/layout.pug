@@ -1,0 +1,62 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset="UTF-8")
+    meta( name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+    script(src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js")
+    link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css")
+    script(src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js")
+    style(type="text/css").
+      body {
+        background-color: #FFFFFF;
+      }
+      .ui.menu .item img.logo {
+        margin-right: 1.5em;
+      }
+      .main.container {
+        margin-top: 7em;
+      }
+      .wireframe {
+        margin-top: 2em;
+      }
+      .ui.footer.segment {
+        margin: 5em 0em 0em;
+        padding: 5em 0em;
+      }
+    title Passport.js - #{title}
+  body
+    div(class="ui fixed menu")
+      div(class="ui container")
+        a(href="/" class="header item")
+          img(class="logo" src="/images/logo.png")
+          | Passport.js
+
+        a(href="/" class="item")
+          i(class="home icon")
+          | Home
+
+        if currentUser && currentUser.roles.includes('administrator')
+          a(href="/users" class="item")
+            i(class="users icon")
+            | Users
+
+        div(class="item")= path
+
+        if path !== '/session/new'
+          .right.menu
+            if currentUser 
+              a(href="/profile" class="item")
+                i(class="user icon")
+                | #{currentUser.email}
+              .ui.item
+                a(class="ui negative button" href="/session/delete")
+                  i(class="sign out icon")
+                  | End Session
+            else
+              .ui.item
+                a(class="ui positive button" href="/session/new")
+                  i(class="sign in icon")
+                  | Start Session
+
+    main(class="ui main container")
+      block content

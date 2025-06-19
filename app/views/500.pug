@@ -1,0 +1,14 @@
+extends layout
+block content
+
+  h1 Server Error [500]
+  
+  p Something went wrong.
+
+  if error
+    h3 Error details:
+    pre= error.message
+    if error.stack
+      pre= error.stack
+
+  a(href="/") Return to home  
