@@ -19,4 +19,4 @@ router
       res.redirect('/profile');
     });
 
-module.exports = router;    
+module.exports = router;
