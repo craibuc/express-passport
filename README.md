@@ -1,4 +1,5 @@
 # express-passport
+Node.js/express application that uses Passport.js for authentication.
 
 ## References
 
