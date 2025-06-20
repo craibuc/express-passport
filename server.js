@@ -16,21 +16,14 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// authentication
+const passport = require('./app/config/passport')
+app.use(passport.initialize());
+app.use(passport.session());
+
 // flash messages
 const flash = require('connect-flash');
 app.use(flash());
-
-/**
- * Passport
- */
-
-require('./app/config/passport.config')
-
-const passport = require('passport');
-
-// initialize Passport
-app.use(passport.initialize());
-app.use(passport.session());
 
 // ensure currentUser is available to all route handlers
 app.use((req, res, next) => {
