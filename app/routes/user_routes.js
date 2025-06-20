@@ -48,7 +48,7 @@ router
     user.roles = Array.isArray(roles) ? roles : (roles ? [roles] : user.roles);
     user.inactive = Number(inactive) === 1;
 
-    res.redirect(`/users/${user.id}/edit`);
+    res.redirect(`/users`);
 
   });
 
