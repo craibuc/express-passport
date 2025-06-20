@@ -1,10 +1,14 @@
-/**
- * Github
- */
+/*
+Provider:
+passport-github
+
+Link:
+https://www.passportjs.org/packages/passport-github/
+*/
 
 const dotenv = require('dotenv').config()
 
-const users = require('../services/user_service')
+const users = require('../../services/user_service')
 
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;

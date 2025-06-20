@@ -1,9 +1,12 @@
-/**
- * Local
- * 
- */
+/*
+Provider:
+passport-local
 
-const users = require('../services/user_service')
+Link:
+https://www.passportjs.org/packages/passport-local/
+*/
+
+const users = require('../../services/user_service')
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
