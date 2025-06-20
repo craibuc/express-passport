@@ -1,11 +1,11 @@
-const users = require('../services/user_service')
+const { ensureAuthenticated, requireRole } = require('../middleware/auth');
 
-const { ensureAuthenticated, isAuthorized } = require('./helper')
+const users = require('../services/user_service')
 
 const router = require('express').Router();
 router
 
-  .get('/', ensureAuthenticated, isAuthorized('administrator'), (req,res) => {
+  .get('/', ensureAuthenticated, requireRole('administrator'), (req,res) => {
     console.log('GET /users')
     
     res.render('users/index', { 
@@ -15,7 +15,7 @@ router
 
   })
 
-  .get('/:id/edit', ensureAuthenticated, isAuthorized('administrator'), (req, res) => {
+  .get('/:id/edit', ensureAuthenticated, requireRole('administrator'), (req, res) => {
     console.log(`GET /users/${req.params.id}/edit`);
 
     const { id } = req.params;
@@ -32,7 +32,7 @@ router
 
   })
 
-  .post('/:id/edit', ensureAuthenticated, isAuthorized('administrator'), (req, res) => {
+  .post('/:id/edit', ensureAuthenticated, requireRole('administrator'), (req, res) => {
     console.log(`POST /users/${req.params.id}/edit`);
 
     const { id } = req.params;
